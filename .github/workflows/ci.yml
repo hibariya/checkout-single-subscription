@@ -9,7 +9,7 @@ jobs:
         with:
           # repository: 'stripe-samples/checkout-single-subscription'
           repository: 'hibariya/checkout-single-subscription'
-          ref: 'ci'
+          ref: 'tmp'
 
       - uses: actions/checkout@v2
         with:
