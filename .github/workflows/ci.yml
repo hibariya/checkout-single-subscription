@@ -1,7 +1,7 @@
 name: CI for stripe-samples/checkout-single-subscription
 on: [push]
 env:
-  SOURCE_REPOSITORY: stripe-samples/checkout-single-subscription
+  SOURCE_REPOSITORY: hibariya/checkout-single-subscription
 
 jobs:
   test:
