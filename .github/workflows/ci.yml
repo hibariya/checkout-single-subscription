@@ -1,8 +1,8 @@
 name: CI for stripe-samples/checkout-single-subscription
 on: [push]
 env:
-  UPSTREAM_OWNER: hibariya
-  # UPSTREAM_OWNER: stripe-samples
+  # UPSTREAM_OWNER: hibariya
+  UPSTREAM_OWNER: stripe-samples
 
 jobs:
   test:
