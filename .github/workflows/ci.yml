@@ -1,34 +1,35 @@
 name: CI for stripe-samples/checkout-single-subscription
 on: [push]
 env:
-  SOURCE_REPOSITORY: hibariya/checkout-single-subscription
+  UPSTREAM_OWNER: hibariya
+  # UPSTREAM_OWNER: stripe-samples
 
 jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        if: github.repository == env.SOURCE_REPOSITORY
+        if: github.repository_owner == env.UPSTREAM_OWNER
 
       - uses: actions/checkout@v2
-        if: github.repository == env.SOURCE_REPOSITORY
+        if: github.repository_owner == env.UPSTREAM_OWNER
         with:
           repository: 'stripe-samples/sample-ci'
           path: 'sample-ci'
 
       - name: Install gettext for envsubst
-        if: github.repository == env.SOURCE_REPOSITORY
+        if: github.repository_owner == env.UPSTREAM_OWNER
         run: |
           sudo apt install gettext-base
 
       - name: Install jq
-        if: github.repository == env.SOURCE_REPOSITORY
+        if: github.repository_owner == env.UPSTREAM_OWNER
         run: |
           sudo curl -o /usr/bin/jq -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64
           sudo chmod +x /usr/bin/jq
 
       - name: Run tests
-        if: github.repository == env.SOURCE_REPOSITORY
+        if: github.repository_owner == env.UPSTREAM_OWNER
         run: |
           source sample-ci/helpers.sh
 
