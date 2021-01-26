@@ -5,6 +5,24 @@ jobs:
   test:
     runs-on: ubuntu-20.04
     steps:
+      - uses: actions/github-script@v2
+        id: check
+        with:
+          script: |
+            const { owner, repo } = context.repo
+            if (true) {
+              console.log('Cancelling ...');
+              const run_id = "${{ github.run_id }}";
+              await github.actions.cancelWorkflowRun({ owner, repo, run_id });
+              return 'stop'
+            } else {
+              return 'build'
+            }
+          result-encoding: string
+      - name: Waiting for cancellation
+        run: sleep 60
+        if: steps.check.outputs.result == 'stop'
+
       - uses: actions/checkout@v2
 
       - uses: actions/checkout@v2
